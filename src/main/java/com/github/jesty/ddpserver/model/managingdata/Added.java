@@ -1,5 +1,8 @@
 package com.github.jesty.ddpserver.model.managingdata;
 
+import java.util.List;
+
+import com.github.jesty.ddpserver.model.HasCollection;
 import com.github.jesty.ddpserver.model.HasMsg;
 
 
@@ -13,21 +16,14 @@ import com.github.jesty.ddpserver.model.HasMsg;
  * fields: optional object with EJSON values
  *
  */
-public class Added  implements HasMsg {
+public class Added  implements HasMsg, HasCollection {
 	
 	public static final String MSG = "added";
 	
-	private String added;
 	private String collection;
 	private String id;
-	private String fields;
+	private List<?> fields;
 	
-	public String getAdded() {
-		return added;
-	}
-	public void setAdded(String added) {
-		this.added = added;
-	}
 	public String getCollection() {
 		return collection;
 	}
@@ -40,10 +36,10 @@ public class Added  implements HasMsg {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getFields() {
+	public List<?> getFields() {
 		return fields;
 	}
-	public void setFields(String fields) {
+	public void setFields(List<?> fields) {
 		this.fields = fields;
 	}
 	@Override

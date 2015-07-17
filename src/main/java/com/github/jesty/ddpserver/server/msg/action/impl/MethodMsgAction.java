@@ -21,18 +21,17 @@ public class MethodMsgAction implements MsgAction<Method> {
 		for (MethodInvoker methodInvoker : invokers) {
 			try{
 				Object invokationResult = invoke(object, methodInvoker);
-				if(invokationResult != null){
-					result = new Result();
-					result.setResult(invokationResult);
-					updated = new Updated(){{
-						setMethods(new String[]{object.getId()});
-					}};
-					break;
-				}
+				result = new Result();
+				result.setResult(invokationResult);
+				updated = new Updated(){{
+					setMethods(new String[]{object.getId()});
+				}};
+				break;
 			} catch(NoSuchMethodException e){
 				//method not found, try next invoker
 				continue;
 			} catch(Exception e){
+				e.printStackTrace();
 				result = new Result();
 				com.github.jesty.ddpserver.model.error.Error error = new com.github.jesty.ddpserver.model.error.Error();
 				error.setError(e.getClass().toString());

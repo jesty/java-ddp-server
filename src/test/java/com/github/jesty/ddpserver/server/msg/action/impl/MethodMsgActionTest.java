@@ -33,7 +33,6 @@ public class MethodMsgActionTest {
 	public void init(){
 		action = new MethodMsgAction();
 		action.addInvoker(new ReflectionMethodInvoker());
-		
 	}
 
 	@Test

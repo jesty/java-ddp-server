@@ -1,5 +1,6 @@
 package com.github.jesty.ddpserver.model.managingdata;
 
+import com.github.jesty.ddpserver.model.HasCollection;
 import com.github.jesty.ddpserver.model.HasMsg;
 
 
@@ -14,7 +15,7 @@ import com.github.jesty.ddpserver.model.HasMsg;
  * before: string or null (the document ID to add the document before, or null to add at the end)
  *
  */
-public class AddedBefore  implements HasMsg {
+public class AddedBefore  implements HasMsg, HasCollection {
 	
 	public static final String MSG = "addedBefore";
 	

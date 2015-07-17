@@ -1,5 +1,8 @@
 package com.github.jesty.ddpserver.model.managingdata;
 
+import java.util.List;
+
+import com.github.jesty.ddpserver.model.HasCollection;
 import com.github.jesty.ddpserver.model.HasMsg;
 
 
@@ -14,13 +17,13 @@ import com.github.jesty.ddpserver.model.HasMsg;
  * cleared: optional array of strings (field names to delete)
  *
  */
-public class Changed  implements HasMsg {
+public class Changed  implements HasMsg, HasCollection {
 	
 	public static final String MSG = "changed";
 	
 	private String collection;
 	private String id;
-	private String fields;
+	private List<?> fields;
 	private String cleared;
 	
 	public String getCollection() {
@@ -35,11 +38,11 @@ public class Changed  implements HasMsg {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getFields() {
+	public List<?> getFields() {
 		return fields;
 	}
-	public void setFields(String fields) {
-		this.fields = fields;
+	public void setFields(List<?> list) {
+		this.fields = list;
 	}
 	public String getCleared() {
 		return cleared;

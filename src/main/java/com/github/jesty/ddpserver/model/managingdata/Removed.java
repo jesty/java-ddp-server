@@ -1,5 +1,6 @@
 package com.github.jesty.ddpserver.model.managingdata;
 
+import com.github.jesty.ddpserver.model.HasCollection;
 import com.github.jesty.ddpserver.model.HasMsg;
 
 
@@ -12,7 +13,7 @@ import com.github.jesty.ddpserver.model.HasMsg;
  * id: string (document ID)
  *
  */
-public class Removed  implements HasMsg {
+public class Removed  implements HasMsg, HasCollection {
 	
 	public static final String MSG = "removed";
 	

@@ -16,15 +16,16 @@ public class DDPSession {
 
 	private Session session;
 	private ObjectMapper mapper;
+	private String sessionId;
 
 	public DDPSession(Session session){
-		this.session = session;
-		mapper = new ObjectMapper();
+		this(session, new ObjectMapper());
 	}
 	
 	public DDPSession(Session session, ObjectMapper mapper){
 		this.session = session;
 		this.mapper = mapper;
+		this.sessionId = session.getId();
 	}
 
 	public Session getSession() {
@@ -46,5 +47,33 @@ public class DDPSession {
 			}
 		}
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((sessionId == null) ? 0 : sessionId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DDPSession other = (DDPSession) obj;
+		if (sessionId == null) {
+			if (other.sessionId != null)
+				return false;
+		} else if (!sessionId.equals(other.sessionId))
+			return false;
+		return true;
+	}
+	
+	
 
 }

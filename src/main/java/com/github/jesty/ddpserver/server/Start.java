@@ -12,7 +12,7 @@ public class Start {
     }
  
     public static void runServer() {
-        Server server = new Server("localhost", 3000, "/", DDPWebSocket.class);
+        Server server = new Server("localhost", 3030, "/", DDPWebSocket.class);
         try {
             server.start();
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

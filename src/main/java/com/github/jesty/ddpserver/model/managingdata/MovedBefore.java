@@ -1,5 +1,6 @@
 package com.github.jesty.ddpserver.model.managingdata;
 
+import com.github.jesty.ddpserver.model.HasCollection;
 import com.github.jesty.ddpserver.model.HasMsg;
 
 
@@ -13,7 +14,7 @@ import com.github.jesty.ddpserver.model.HasMsg;
  * before: string or null (the document ID to move the document before, or null to move to the end)
  *
  */
-public class MovedBefore  implements HasMsg {
+public class MovedBefore  implements HasMsg, HasCollection {
 	
 	public static final String MSG = "movedBefore";
 	

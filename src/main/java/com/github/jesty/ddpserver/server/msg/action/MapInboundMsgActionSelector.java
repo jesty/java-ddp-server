@@ -13,16 +13,24 @@ import com.github.jesty.ddpserver.server.msg.action.impl.MethodMsgAction;
 import com.github.jesty.ddpserver.server.msg.action.impl.PingMsgAction;
 import com.github.jesty.ddpserver.server.msg.action.impl.SubMsgAction;
 import com.github.jesty.ddpserver.server.msg.action.impl.UnsubMsgAction;
+import com.github.jesty.ddpserver.server.msg.method.IdGenerator;
+import com.github.jesty.ddpserver.server.msg.method.MongoDBMethodInvoker;
+import com.github.jesty.ddpserver.server.msg.method.ReflectionMethodInvoker;
+import com.github.jesty.ddpserver.server.msg.pubsub.PubSub;
+import com.mongodb.DB;
 
 public class MapInboundMsgActionSelector implements InboundMsgActionSelector {
 	
 private Map<Class, MsgAction> map = new HashMap<Class, MsgAction>();
 	
-	public MapInboundMsgActionSelector() {
+	public MapInboundMsgActionSelector(PubSub pubsub, IdGenerator idGenerator, DB db) {
 		map.put(Connect.class, new ConnectMsgAction());
-		map.put(Sub.class, new SubMsgAction());
-		map.put(Unsub.class, new UnsubMsgAction());
-		map.put(Method.class, new MethodMsgAction());
+		map.put(Sub.class, new SubMsgAction(pubsub));
+		map.put(Unsub.class, new UnsubMsgAction(pubsub));
+		MethodMsgAction methodMsgAction = new MethodMsgAction();
+		methodMsgAction.addInvoker(new ReflectionMethodInvoker());
+		methodMsgAction.addInvoker(new MongoDBMethodInvoker(db, pubsub, idGenerator) );
+		map.put(Method.class, methodMsgAction);
 		map.put(Ping.class, new PingMsgAction());
 	}
 
